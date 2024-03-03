@@ -2,6 +2,12 @@ import { Link, Outlet } from "react-router-dom"
 import profileImage from '../assets/profile.jpg'
 import { useState } from "react";
 
+const list: Array<string> = [
+  'Fruits',
+  'Vegetables',
+  'Toys'
+];
+
 export default function Layout() {
     const [ showMenu, setUseMenu ] = useState(true);
   
@@ -11,7 +17,7 @@ export default function Layout() {
 
     return (
       <main className="md:flex">
-        <aside className="w-[300px] max-w-[300px] min-h-screen bg-[#161a50] pl-2 pt-2">
+        <aside className="w-[300px] max-w-[300px] min-h-screen bg-[#345084] pl-2 pt-2">
           <section className="flex py-2 justify-evenly">
             <img
               src={profileImage}
@@ -92,22 +98,23 @@ export default function Layout() {
 
             <div className="w-[280px] h-1 rounded-lg bg-[#7595ff]"></div>
 
-            <Link
-              to="#"
-              className="text-lg font-bold text-white hover:text-[#9cbcff] transition-all ease-out"
-            >
-              List 1
-            </Link>
-            <Link
-              to="#"
-              className="text-lg font-bold text-white hover:text-[#9cbcff] transition-all ease-out"
-            >
-              List 2
-            </Link>
+            { list.length > 0 ? (
+              list.map( (title: string, index: number) => (
+                <Link 
+                  to='#' 
+                  key={index}
+                  className="text-lg font-bold text-white hover:text-[#9cbcff] transition-all ease-out"
+                >
+                  {title}
+                </Link>
+              ))
+            ) : (
+              null
+            )}
 
             <form action="">
               <button
-                className="text-white transition-all ease-in-out hover:text-slate-300"
+                className="text-[18px] text-gray-200 transition-all ease-in-out hover:text-zinc-700"
                 type="submit"
               >
                 Crear nueva lista
